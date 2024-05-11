@@ -152,9 +152,12 @@ Expertise Area: Stocks
         st.write("Chatbot:", response)
 
 
-        for message in st.session_state.chat_history:
-            st.text(f"Human: {message['human']}")
-            st.text(f"Chatbot: {message['AI']}")
+         # Displaying chat history vertically with fixed height and vertical scrolling
+        chat_history_display = "<div style='overflow-y: scroll; height: 400px;'>"
+        for msg in st.session_state.chat_history:
+            chat_history_display += f"<div>Human: {msg['human']}</div><div>Chatbot: {msg['AI']}</div><br>"
+        chat_history_display += "</div>"
+        st.markdown(chat_history_display, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
